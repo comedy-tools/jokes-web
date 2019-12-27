@@ -17,7 +17,7 @@ toString id = id.namespace ++ ":"
 parse : String -> Maybe Identifier
 parse str =
   let
-    components = List.filter (not << String.isEmpty) (String.split ":" str)
+    components = List.filter isNotEmptyOrBlank (String.split ":" str)
   in
     case components of
       [namespace, collection, identifier] ->
@@ -26,3 +26,7 @@ parse str =
              , identifier = identifier
              }
       _ -> Nothing
+
+
+isNotEmptyOrBlank : String -> Bool
+isNotEmptyOrBlank = not << String.isEmpty << String.trim

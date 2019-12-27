@@ -55,4 +55,6 @@ testParse =
         \_ -> Expect.equal Nothing (Identifier.parse "a:b")
     , test "String with an empty component returns nothing" <|
         \_ -> Expect.equal Nothing (Identifier.parse "a::b")
+    , test "String with blank component returns nothing" <|
+        \_ -> Expect.equal Nothing (Identifier.parse "    :sth:else")
     ]
